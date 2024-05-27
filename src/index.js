@@ -2,19 +2,6 @@ import "./assets/style.css";
 import { findWeatherWithCoords } from "./api/coordinates";
 import { findWeather } from "./api/location";
 // save time -> fetch the promise first then use that for the whole system ?
-let weatherPromise;
-window.addEventListener("load", (event) => {
-  event;
-  navigator.geolocation.getCurrentPosition((position) => {
-    weatherPromise = findWeatherWithCoords(
-      position.coords.latitude,
-      position.coords.longitude
-    );
-    weatherPromise.then((value) => {
-      console.log(value);
-    });
-  });
-});
 
 let findLocation = document.querySelector("#FindLocation");
 let Form = document.querySelector("#Form");
@@ -22,11 +9,31 @@ console.log(Form);
 findLocation.addEventListener("change", (event) => {
   event.preventDefault();
   console.log(findLocation.value);
-  weatherPromise = findWeather(findLocation.value);
-  weatherPromise.then((value) => {
+  findWeather(findLocation.value).then((value) => {
     console.log(value);
   });
 });
+
+function LocationController() {
+  let left, right;
+  let coordinates = navigator.geolocation.getCurrentPosition((position) => {
+    console.log(position);
+    return [position.coords.latitude, position.coords.longitude];
+  });
+  console.log(coordinates);
+  console.log(left);
+
+  return;
+}
+class informationController {
+  constructor() {}
+  getInformation() {
+    LocationController();
+    return;
+  }
+}
+let controller = new informationController();
+controller.getInformation();
 
 //  setTimeout(() => {
 //   let first = findWeather("New York");

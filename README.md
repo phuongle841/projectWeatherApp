@@ -53,3 +53,4 @@
 # Working policy
 
 - use the document example of an response in WEATHER_API to find the fit part for the page
+- please re-read the call back function. you don't understand the shit is happening in this project that clear.

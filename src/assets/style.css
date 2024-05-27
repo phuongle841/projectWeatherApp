@@ -1,0 +1,39 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  border: 1px solid #333;
+  background-color: #fff;
+  color: #000;
+  box-sizing: border-box;
+}
+html {
+  height: 100vh;
+  width: 100vw;
+}
+body {
+  padding: 5%;
+  height: 100%;
+}
+#container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 3fr 1fr;
+}
+#Current {
+  grid-column: 1 / 4;
+}
+#Day {
+  grid-column: 1/4;
+  grid-row: 2/3;
+  display: flex;
+  overflow: hidden;
+}
+.inDay {
+  flex: 300px;
+  flex-shrink: 0;
+}
+#Form input#FindLocation {
+  font-size: 24px;
+  width: 100%;
+}

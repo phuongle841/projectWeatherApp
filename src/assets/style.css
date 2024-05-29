@@ -27,7 +27,7 @@ body {
   grid-column: 1/4;
   grid-row: 2/3;
   display: flex;
-  overflow: hidden;
+  overflow-y: auto;
 }
 .inDay {
   flex: 300px;

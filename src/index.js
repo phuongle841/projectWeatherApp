@@ -1,65 +1,79 @@
 import "./assets/style.css";
 import { findWeatherWithCoords } from "./api/coordinates";
 import { findWeather } from "./api/location";
-// save time -> fetch the promise first then use that for the whole system ?
 
 let findLocation = document.querySelector("#FindLocation");
-let Form = document.querySelector("#Form");
-console.log(Form);
-findLocation.addEventListener("change", (event) => {
+
+findLocation.addEventListener("change", async (event) => {
   event.preventDefault();
-  console.log(findLocation.value);
-  findWeather(findLocation.value).then((value) => {
-    console.log(value);
-  });
+  let result = await findWeather(findLocation.value);
+  console.log(result);
+  if (result == false) {
+    console.log("bad request my bro");
+  }
 });
 
-function LocationController() {
-  let left, right;
-  let coordinates = navigator.geolocation.getCurrentPosition((position) => {
-    console.log(position);
-    return [position.coords.latitude, position.coords.longitude];
+let getLocation = function () {
+  return new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      let weather = await findWeatherWithCoords(latitude, longitude);
+      resolve(weather);
+    });
   });
-  console.log(coordinates);
-  console.log(left);
-
-  return;
+};
+async function DataToView(location) {
+  let data = await getLocation()
+    .then((value) => {
+      return value;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  let CurrentData = data.current;
+  let dayOneData = data.dayOne;
+  inputCurrent(CurrentData);
+  inputDayOne(dayOneData);
 }
-class informationController {
-  constructor() {}
-  getInformation() {
-    LocationController();
-    return;
+function inputCurrent(CurrentData) {
+  let Current = document.querySelector("#Current");
+  let Location = Current.querySelector("#Location");
+  Location.textContent = CurrentData.location;
+  let Time = Current.querySelector("#Time");
+  Time.textContent = CurrentData.localTime;
+  let Temp = Current.querySelector("#Temp");
+  Temp.textContent = CurrentData.tempC;
+  let Weather = Current.querySelector("#Weather");
+  Weather.textContent = CurrentData.weather;
+  let Wind = Current.querySelector("#Wind");
+  Wind.textContent = CurrentData.windM;
+  let Humidity = Current.querySelector("#Humidity");
+  Humidity.textContent = CurrentData.humidity;
+  let Cloud = Current.querySelector("#Cloud");
+  Cloud.textContent = CurrentData.cloud;
+}
+function inputDayOne(dayOneData) {
+  let dayOne = document.querySelector("#Day");
+  for (const key in dayOneData) {
+    if (Object.hasOwnProperty.call(dayOneData, key)) {
+      const element = dayOneData[key];
+      Day(dayOne, key, element);
+    }
   }
 }
-let controller = new informationController();
-controller.getInformation();
-
-//  setTimeout(() => {
-//   let first = findWeather("New York");
-//   let second = findWeather("Paris");
-//   let third = findWeather("Dubai");
-//   let fourth = findWeather("Seoul");
-//   let fifth = findWeather("india");
-
-//   first.then((value) => {
-//     let weather = value.current.condition.text;
-//     console.log(weather);
-//   });
-//   second.then((value) => {
-//     let weather = value.current.condition.text;
-//     console.log(weather);
-//   });
-//   third.then((value) => {
-//     let weather = value.current.condition.text;
-//     console.log(weather);
-//   });
-//   fourth.then((value) => {
-//     let weather = value.current.condition.text;
-//     console.log(weather);
-//   });
-//   fifth.then((value) => {
-//     let weather = value.current.condition.text;
-//     console.log(weather);
-//   });
-// }, 2000);
+let Day = function (DayDiv, Time, Weather) {
+  let dayContainer = document.createElement("div");
+  dayContainer.classList.add("inDay");
+  let timeDiv = document.createElement("h3");
+  timeDiv.classList.add("Time");
+  timeDiv.textContent = Time;
+  let weatherDiv = document.createElement("h3");
+  weatherDiv.classList.add("Weather");
+  weatherDiv.textContent = Weather;
+  dayContainer.appendChild(timeDiv);
+  dayContainer.appendChild(weatherDiv);
+  DayDiv.appendChild(dayContainer);
+  return dayContainer;
+};
+DataToView();

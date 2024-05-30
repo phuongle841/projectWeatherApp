@@ -5,16 +5,21 @@ import { findWeather } from "./api/location";
 let findLocation = document.querySelector("#FindLocation");
 
 findLocation.addEventListener("change", async (event) => {
-  event.preventDefault();
-  let result = await findWeather(findLocation.value);
-  console.log(result);
-  if (result == false) {
-    console.log("bad request my bro");
+  if (findLocation.value == "") {
+    return;
   }
+  event.preventDefault();
+  let location = getLocationWithSearch(findLocation.value);
+  location.then((value) => {
+    if (value == false) {
+      console.log("this value is a bad request");
+    }
+  });
+  DataToView(location);
 });
 
-let getLocation = function () {
-  return new Promise((resolve) => {
+let getDefaultLocation = function () {
+  let result = new Promise((resolve) => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
@@ -22,9 +27,25 @@ let getLocation = function () {
       resolve(weather);
     });
   });
+  return result;
 };
+
+async function getLocationWithSearch(location) {
+  let result = new Promise((resolve) => {
+    async function fetchData() {
+      let weather = await findWeather(location);
+      if (weather == false) {
+        console.log("bad request");
+      }
+      resolve(weather);
+    }
+    fetchData();
+  });
+  return result;
+}
+
 async function DataToView(location) {
-  let data = await getLocation()
+  let data = await location
     .then((value) => {
       return value;
     })
@@ -76,4 +97,4 @@ let Day = function (DayDiv, Time, Weather) {
   DayDiv.appendChild(dayContainer);
   return dayContainer;
 };
-DataToView();
+DataToView(getDefaultLocation());

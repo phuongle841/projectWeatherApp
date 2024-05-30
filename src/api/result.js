@@ -28,7 +28,6 @@ let getForecast = async function (response) {
         let value = element.temp_c + "'C";
         forecastDayTwo[time] = value;
       });
-
       result["current"] = current;
       result["dayOne"] = forecastDayOne;
       result["dayTow"] = forecastDayTwo;

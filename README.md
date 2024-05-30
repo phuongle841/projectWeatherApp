@@ -28,15 +28,17 @@
 
 # requirement in this project
 
-- Search for a specific location and
-  - functions take a location and return the weather
 - Toggle displaying the data in Fahrenheit or Celsius.
 - You should change the look of the page based on the data, maybe by changing the color of the background
 - add a ‘loading’ component
-- handle error when fetch bad input
 
 # done
 
+- Search for a specific location and
+
+  - functions take a location and return the weather
+
+- handle error when fetch bad input
 - main page includes these information:
   - local time
   - temp c

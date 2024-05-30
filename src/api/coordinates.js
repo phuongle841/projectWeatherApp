@@ -10,6 +10,7 @@ async function findWeatherWithCoords(latitude, longitude) {
     let url = headURL + parsedLocation + tailURL;
     let response = (await fetch(url)).json();
     let result = await getForecast(response);
+
     return result;
   } catch (error) {
     console.error("Problem occur in " + error);

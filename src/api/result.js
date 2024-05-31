@@ -18,19 +18,21 @@ let getForecast = async function (response) {
       let forecastDayOne = {};
       value.forecast.forecastday[0].hour.forEach((element) => {
         let time = element.time.slice(11);
-        let value = element.temp_c + "'C";
-        forecastDayOne[time] = value;
+        let valueInC = element.temp_c + "'C";
+        let valueInF = element.temp_f + "'F";
+        forecastDayOne[time] = [valueInC, valueInF];
       });
 
       let forecastDayTwo = {};
       value.forecast.forecastday[1].hour.forEach((element) => {
         let time = element.time.slice(11);
-        let value = element.temp_c + "'C";
-        forecastDayTwo[time] = value;
+        let valueInC = element.temp_c + "'C";
+        let valueInF = element.temp_f + "'F";
+        forecastDayTwo[time] = [valueInC, valueInF];
       });
       result["current"] = current;
       result["dayOne"] = forecastDayOne;
-      result["dayTow"] = forecastDayTwo;
+      result["dayTwo"] = forecastDayTwo;
     })
     .catch((error) => {
       console.log(error);

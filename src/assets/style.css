@@ -23,6 +23,10 @@ body {
 #Current {
   grid-column: 1 / 4;
 }
+#Current > div {
+  display: flex;
+  gap: 10px;
+}
 #Day {
   grid-column: 1/4;
   grid-row: 2/3;
@@ -36,4 +40,11 @@ body {
 #Form input#FindLocation {
   font-size: 24px;
   width: 100%;
+}
+#Form > h3 {
+  display: none;
+  color: #ff3434;
+}
+#Form > h3.display {
+  display: block;
 }

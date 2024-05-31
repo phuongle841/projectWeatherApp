@@ -8,13 +8,32 @@
   <body>
     <div id="container">
       <div id="Current">
-        <h1 id="Location">HCM city</h1>
-        <h2 id="Time">12:12</h2>
-        <h3 id="Temp">31'C</h3>
-        <h3 id="Weather">Cloud</h3>
-        <h3 id="Wind">34km/h</h3>
-        <h3 id="Humidity">80%</h3>
-        <h3 id="Cloud">5 herd</h3>
+        <h1 id="Location">Loading</h1>
+        <div>
+          <h2>Time</h2>
+          <h2 id="Time">Loading</h2>
+        </div>
+        <div>
+          <h2>Temperature</h2>
+          <h2 id="Temp">Loading</h2>
+        </div>
+        <div>
+          <h2>Weather</h2>
+          <h2 id="Weather">Loading</h2>
+        </div>
+        <div>
+          <h2>wind speed</h2>
+          <h2 id="Wind">Loading</h2>
+        </div>
+        <div>
+          <h2>Humidity</h2>
+          <h2 id="Humidity">Loading</h2>
+        </div>
+        <div>
+          <h2>Cloud percentages</h2>
+          <h2 id="Cloud">Loading</h2>
+        </div>
+        <input type="text" id="test" />
       </div>
       <div id="">
         <form action="" id="Form">
@@ -25,12 +44,16 @@
           </button>
         </form>
       </div>
-
       <div id="Day">
         <div class="inDay">
           <h3 class="Time">01:00</h3>
           <h3 class="Weather">Cloudy</h3>
         </div>
+      </div>
+      <div id="setting">
+        <h2>Setting</h2>
+        <button id="TemperatureSwitch">Current Unit F</button>
+        <button id="DistanceSwitch">Current Unit miles/h</button>
       </div>
     </div>
   </body>

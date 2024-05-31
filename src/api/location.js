@@ -25,7 +25,7 @@ async function findWeather(location) {
       let result = await getForecast(response.json());
       return result;
     } else {
-      throw new Error("something bad is happen and it's maybe a bad request");
+      return false;
     }
   } catch (error) {
     console.log(error);

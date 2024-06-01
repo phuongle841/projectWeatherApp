@@ -3,6 +3,10 @@ let getForecast = async function (response) {
   let result = {};
   let bar = await response
     .then((value) => {
+      // add icon next to the Location
+      // this should not be here
+      let icon = document.querySelector(".icon");
+      icon.style.background = `url("https:${value.current.condition.icon}")`;
       let current = {
         location: value.location.name,
         localTime: value.location.localtime.slice(11),
@@ -20,7 +24,8 @@ let getForecast = async function (response) {
         let time = element.time.slice(11);
         let valueInC = element.temp_c + "'C";
         let valueInF = element.temp_f + "'F";
-        forecastDayOne[time] = [valueInC, valueInF];
+        let iconSrc = "https:" + element.condition.icon;
+        forecastDayOne[time] = [valueInC, valueInF, iconSrc];
       });
 
       let forecastDayTwo = {};

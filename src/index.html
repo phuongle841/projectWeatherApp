@@ -8,7 +8,10 @@
   <body>
     <div id="container">
       <div id="Current">
-        <h1 id="Location">Loading</h1>
+        <div>
+          <h1 id="Location">Loading</h1>
+          <div class="icon"></div>
+        </div>
         <div>
           <h2>Time</h2>
           <h2 id="Time">Loading</h2>
@@ -33,21 +36,24 @@
           <h2>Cloud percentages</h2>
           <h2 id="Cloud">Loading</h2>
         </div>
-        <input type="text" id="test" />
       </div>
       <div id="">
         <form action="" id="Form">
+          <h2>Want find weather somewhere, type in this box</h2>
           <input type="text" name="" id="FindLocation" />
           <h3>Location is not found, please provide proper input</h3>
-          <button type="button" id="FindButton">
-            <h3>Submit Location</h3>
-          </button>
+          <button type="submit" id="SubmitBtn">Submit</button>
         </form>
       </div>
-      <div id="Day">
-        <div class="inDay">
-          <h3 class="Time">01:00</h3>
-          <h3 class="Weather">Cloudy</h3>
+      <div id="Forecast">
+        <div class="DropDownBtn">
+          <button id="TomorrowSTomorrow">Tomorrow's Tomorrow</button>
+        </div>
+        <div id="Day">
+          <div class="inDay">
+            <h3 class="Time">01:00</h3>
+            <h3 class="Weather">Cloudy</h3>
+          </div>
         </div>
       </div>
       <div id="setting">

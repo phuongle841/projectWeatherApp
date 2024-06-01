@@ -28,12 +28,12 @@
 
 # requirement in this project
 
-- Toggle displaying the data in Fahrenheit or Celsius.
 - You should change the look of the page based on the data, maybe by changing the color of the background
 - add a ‘loading’ component
 
 # done
 
+- Toggle displaying the data in Fahrenheit or Celsius.
 - Search for a specific location and
 
   - functions take a location and return the weather

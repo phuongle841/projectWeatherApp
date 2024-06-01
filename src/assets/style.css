@@ -1,8 +1,6 @@
 * {
   padding: 0%;
   margin: 0%;
-  border: 1px solid #333;
-  background-color: #fff;
   color: #000;
   box-sizing: border-box;
 }
@@ -11,31 +9,78 @@ html {
   width: 100vw;
 }
 body {
-  padding: 5%;
+  padding: 3%;
   height: 100%;
 }
 #container {
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 3fr 1fr;
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+#container > div {
+  border-radius: 5px;
+  padding: 5px;
 }
 #Current {
-  grid-column: 1 / 4;
-}
-#Current > div {
-  display: flex;
+  grid-column: 1 / 5;
+  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   gap: 10px;
 }
-#Day {
-  grid-column: 1/4;
+#Current > div:first-child {
+  grid-column: span 2;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.icon {
+  width: 64px;
+  height: 64px;
+}
+#container > div:nth-child(2) {
+  border: 1px solid #333;
+}
+#container > div:nth-child(2) > form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: start;
+}
+#Forecast {
+  grid-column: 1/5;
   grid-row: 2/3;
   display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid #333;
   overflow-y: auto;
 }
+#Day {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 5px;
+}
 .inDay {
-  flex: 300px;
   flex-shrink: 0;
+  background-color: #e2e2e2;
+  padding: 2px;
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+.inDay > img {
+  grid-column: 2/3;
+  grid-row: 1/2;
 }
 #Form input#FindLocation {
   font-size: 24px;
@@ -47,4 +92,17 @@ body {
 }
 #Form > h3.display {
   display: block;
+}
+button {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: #e2e2e2;
+}
+button:active {
+  transform: scale(102%);
+}
+img {
+  width: 30px;
+  height: 30px;
 }

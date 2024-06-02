@@ -5,7 +5,6 @@ export { conduct };
 
 let conduct = function () {
   let findLocation = document.querySelector("#FindLocation");
-  let locationDisplay = document.querySelector("#Location");
   let TemperatureSwitch = document.querySelector("#TemperatureSwitch");
   let DistanceSwitch = document.querySelector("#DistanceSwitch");
   let SubmitBtn = document.querySelector("#SubmitBtn");
@@ -16,7 +15,7 @@ let conduct = function () {
   let unit = "F";
   let distanceUnit = "K";
   const weatherConditions = [
-    { condition: "Sunny", color: "#FFD700" },
+    { condition: "Sunny", color: "#FFEEA9" },
     { condition: "Rain", color: "#4682B4" },
     { condition: "Thunderstorm", color: "#808080" },
     { condition: "Snow", color: "#FFFFFF" },
@@ -73,6 +72,7 @@ let conduct = function () {
       console.log(error);
     }
   }
+
   let getDefaultLocation = function () {
     let result = new Promise((resolve) => {
       navigator.geolocation.getCurrentPosition(async (position) => {
@@ -99,6 +99,7 @@ let conduct = function () {
     return result;
   }
 
+  // refresh view
   async function DataToView(location) {
     try {
       let data = await location
@@ -118,7 +119,6 @@ let conduct = function () {
         inputDayOne(dayTwoData);
       }
     } catch (error) {
-      // call the display function
       notifyBadRequest();
       console.log(error);
     }
@@ -135,7 +135,9 @@ let conduct = function () {
     let Current = document.querySelector("#Current");
     let Location = Current.querySelector("#Location");
     Location.textContent = CurrentData.location;
+
     scopeLocation = CurrentData.location;
+
     let Time = Current.querySelector("#Time");
     Time.textContent = CurrentData.localTime;
     let Temp = Current.querySelector("#Temp");
@@ -149,6 +151,7 @@ let conduct = function () {
     let Weather = Current.querySelector("#Weather");
     Weather.textContent = CurrentData.weather;
     changeBackground(CurrentData.weather);
+    console.log(CurrentData.weather);
     let Wind = Current.querySelector("#Wind");
 
     if (distanceUnit == "K") {
@@ -167,11 +170,10 @@ let conduct = function () {
     let body = document.querySelector("body");
     input = input.split(" ");
     input.forEach((weather) => {
-      deCapitalizeFirstLetter(weather);
+      weather = deCapitalizeFirstLetter(weather);
       weatherConditions.forEach((element) => {
         let condition = deCapitalizeFirstLetter(element.condition);
         if (weather == condition) {
-          console.log(condition);
           body.style.backgroundColor = element.color;
         }
       });

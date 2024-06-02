@@ -28,11 +28,12 @@
 
 # requirement in this project
 
-- You should change the look of the page based on the data, maybe by changing the color of the background
 - add a ‘loading’ component
+- error in scopeLocation variable logic
 
 # done
 
+- You should change the look of the page based on the data, maybe by changing the color of the background
 - Toggle displaying the data in Fahrenheit or Celsius.
 - Search for a specific location and
 

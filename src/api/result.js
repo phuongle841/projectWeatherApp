@@ -33,7 +33,8 @@ let getForecast = async function (response) {
         let time = element.time.slice(11);
         let valueInC = element.temp_c + "'C";
         let valueInF = element.temp_f + "'F";
-        forecastDayTwo[time] = [valueInC, valueInF];
+        let iconSrc = "https:" + element.condition.icon;
+        forecastDayTwo[time] = [valueInC, valueInF, iconSrc];
       });
       result["current"] = current;
       result["dayOne"] = forecastDayOne;
